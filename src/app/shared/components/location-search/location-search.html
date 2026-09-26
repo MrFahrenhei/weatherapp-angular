@@ -1,0 +1,10 @@
+<mat-form-field >
+    <mat-label>Get weather form:</mat-label>
+    <input type="text" placeholder="Search" matInput [formControl]="weatherLocationControl" [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option></mat-option>
+    </mat-autocomplete>
+    <button mat-icon-button matSuffix color="primary">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-form-field>
