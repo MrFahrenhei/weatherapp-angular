@@ -1,6 +1,6 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, inject, input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ForecastWeatherViewData } from '../../../../../models/forecast-weather-view-data.interface';
-
 const days = ['SUM', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 @Component({
@@ -10,16 +10,9 @@ const days = ['SUM', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   styleUrl: './weather-forecast-day.scss',
 })
 export class WeatherForecastDay {
-  public weatherCardForecastDayForecast: ForecastWeatherViewData = {
-    temp: 283,
-    dt: new Date().valueOf() / 1000,
-    humidity: 0,
-    windSpeed: 0,
-    weather: {
-      description: 'Light Rain', icon: '10n', main: 'Raining'
-    }
-  }  
-  weatherForecast = signal(this.weatherCardForecastDayForecast);
+
+  private sanitizer = inject(DomSanitizer);
+  weatherForecast = input.required<ForecastWeatherViewData>()
 
   dayName = computed(() => {
     const date = new Date(this.weatherForecast().dt * 1000);
@@ -27,9 +20,15 @@ export class WeatherForecastDay {
   })
 
   weatherIcon = computed(()=>{
-    return `
+    return this.sanitizer.bypassSecurityTrustUrl(`
     https://openweathermap.org/img/wn/${
     this.weatherForecast().weather.icon
-    }@2x.png`;
+    }@2x.png`);
   })
+
+  temperature = computed(
+    ()=> {
+      return `${(this.weatherForecast().temp - 273).toFixed(2)} º`;
+    }
+  );
 }

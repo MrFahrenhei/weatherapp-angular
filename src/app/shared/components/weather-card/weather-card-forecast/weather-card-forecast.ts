@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { WeatherForecastDay } from './weather-forecast-day/weather-forecast-day';
-import { MatIconModule } from '@angular/material/icon';
-import { WeatherCardHeader } from '../weather-card-header/weather-card-header';
+import { ForecastWeatherViewData } from '../../../../models/forecast-weather-view-data.interface';
 
 @Component({
   selector: 'app-weather-card-forecast',
@@ -11,4 +10,6 @@ import { WeatherCardHeader } from '../weather-card-header/weather-card-header';
   templateUrl: './weather-card-forecast.html',
   styleUrl: './weather-card-forecast.scss',
 })
-export class WeatherCardForecast {}
+export class WeatherCardForecast {
+  weatherCardForecastDayForecast = input.required<ForecastWeatherViewData>();
+}
