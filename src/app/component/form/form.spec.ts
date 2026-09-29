@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeatherCardForecast } from './weather-card-forecast';
+import { Form } from './form';
 
-describe('WeatherCardForecast', () => {
-  let component: WeatherCardForecast;
-  let fixture: ComponentFixture<WeatherCardForecast>;
+describe('Form', () => {
+  let component: Form;
+  let fixture: ComponentFixture<Form>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WeatherCardForecast],
+      imports: [Form],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(WeatherCardForecast);
+    fixture = TestBed.createComponent(Form);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
