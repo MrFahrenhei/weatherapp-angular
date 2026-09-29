@@ -1,11 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Place, Weather } from '../../service/place';
-import { withI18nSupport } from '@angular/platform-browser';
+import { WeatherForecast } from '../weather-forecast/weather-forecast';
 
 @Component({
   selector: 'app-form',
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    WeatherForecast
+  ],
   templateUrl: './form.html',
 })
 export class Form {
@@ -28,8 +31,5 @@ export class Form {
         this.error.set('City not found');
       },
     });
-  }
-  temp(): number{
-    return Math.floor(this.weather()!.main.temp);
   }
 }

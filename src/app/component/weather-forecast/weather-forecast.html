@@ -1,0 +1,17 @@
+<main id="main">
+  @if (weather(); as w) {
+    <div class="weather">
+      <h2>
+         <img [src]="'https:' + w.current.condition.icon" />
+        {{ w.current.temp_c | number: '1.0-0' }}°C
+        <img [src]="'https:' + w.current.condition.icon" />
+      </h2>
+      <small>{{ w.current.condition.text }}</small>
+      <p>{{ w.location.name }}, {{ w.location.country }}</p>
+    </div>
+  }
+
+  @if (error()) {
+    <p>{{ error() }}</p>
+  }
+</main>
